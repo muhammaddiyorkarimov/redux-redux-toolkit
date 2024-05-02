@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Input from '../ui/input'
 // auth reducer
 import { useDispatch, useSelector } from 'react-redux'
-import { registerUserFailure, registerUserStart, registerUserSuccess } from '../slice/auth'
+import { loginAndRegisterFailure, loginAndRegisterStart, loginAndRegisterSuccess, } from '../slice/auth';
 // service
 import AuthService from './../service/auth';
 
@@ -17,9 +17,9 @@ function Register() {
 	const dispatch = useDispatch()
 	const { isLoading } = useSelector(state => state.auth)
 
-	const handleSubmit = async (e) => {
+	const handleRegister = async (e) => {
 		e.preventDefault();
-		dispatch(registerUserStart())
+		dispatch(loginAndRegisterStart())
 		const user = {
 			username: name,
 			email: email,
@@ -27,19 +27,16 @@ function Register() {
 		}
 		try {
 			const response = await AuthService.userRegister(user)
-			console.log(response);
-			console.log(user);
-			dispatch(registerUserSuccess())
+			dispatch(loginAndRegisterSuccess(response.user))
 		} catch (error) {
-			console.log(error);
-			dispatch(registerUserFailure())
+			dispatch(loginAndRegisterFailure(error.response.data.errors))
 		}
 	}
 
 	return (
 		<div className='d-flex align-items-center'>
 			<main className="form-signin w-50 m-auto mt-5">
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleRegister}>
 					<h1 className="h3 mb-3 fw-normal text-center">Register</h1>
 
 					<Input label={"Username"} setState={setName} />
