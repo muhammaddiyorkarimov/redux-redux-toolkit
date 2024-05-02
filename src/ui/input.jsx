@@ -6,7 +6,7 @@ function Input({label, setState, type="text"}) {
 		<div className="form-floating">
 			<input type={type} onChange={(e) => {
 				setState(e.target.value)
-			}} className="form-control mt-3" id="floatingInput" placeholder={label} />
+			}} className="form-control mt-3" placeholder={label} />
 			<label htmlFor="floatingInput">{label}</label>
 		</div>
 	)

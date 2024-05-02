@@ -14,7 +14,7 @@ function Login() {
 	const [password, setPassword] = useState("")
 
 	const dispatch = useDispatch()
-	const auth = useSelector(state => state.auth)
+	const {isLoading} = useSelector(state => state.auth)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -31,7 +31,7 @@ function Login() {
 					<Input label={"Email adresss"} state={email} setState={setEmail} />
 					<Input label={"Password"} state={password} setState={setPassword} type={"password"} />
 
-					<button className="btn btn-primary w-100 py-2 mt-2" type="submit">Sign in</button>
+					<button className="btn btn-primary w-100 py-2 mt-2" disabled={isLoading} type="submit" >{isLoading ? 'loading...' : 'Sign in'}</button>
 				</form>
 			</main>
 		</div>
