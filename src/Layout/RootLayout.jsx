@@ -20,8 +20,8 @@ function RootLayout() {
           }
         `}
       </style>
-      <header className="d-flex justify-content-around align-items-center py-3">
-        <Link to={'/'} className="logo">KarimovM</Link>
+      <header className="container d-flex justify-content-between align-items-center py-3 border-bottom">
+        <Link to={'/'} className="logo">Articles</Link>
         <ul className="nav nav-pills d-flex g-5">
           <li className="nav-item">
             <NavLink 
@@ -41,7 +41,7 @@ function RootLayout() {
           </li>
         </ul>
       </header>
-      <main>
+      <main className='container'>
         <Outlet />
       </main>
       <footer></footer>
